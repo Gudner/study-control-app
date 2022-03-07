@@ -1,6 +1,6 @@
 # Study Control App
 
-Study Control App is a tool to help students organize tasks they have to do inside a control point. Each control has a number of tasks and a deadline.
+Study Control App is a tool to help students organize tasks they have to do in scope of a control point. Each control has a number of tasks and a deadline.
 
 ## Tools used for development:
 ### Backend:
