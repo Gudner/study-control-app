@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.header {
+  width: 100%;
+  height: 63px;
+  background-color: $gray;
+}
+.header__inner {
+  width: 100%;
+  display: flex;
+  padding: 15px 15px 15px 0;
+}
+.header__arrow {
+}
+.header__arrow-active {
+}
+.header__title {
+  font-size: 24px;
+  margin-left: 20px;
+  color: $textGreen;
+}
