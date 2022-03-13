@@ -1,0 +1,67 @@
+@import "../../../styles/variables.scss";
+.card {
+  width: 165px;
+  height: 200px;
+  background: #2f2e41;
+  box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 0 7px;
+  margin-top: 20px;
+}
+.cardTitle {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+  color: $textGreen;
+  margin: 10px 0 20px 0;
+}
+.cardTeacherBlock {
+  margin: 0 2px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.teacherName {
+  font-size: 11px;
+  line-height: 15px;
+  color: $text;
+  margin-left: 10px;
+}
+.controlDateBlock {
+  margin: 0 2px;
+  margin-bottom: 25px;
+}
+.controlDateText {
+  font-size: 11px;
+  line-height: 15px;
+  color: $text;
+}
+.controlDateTextStrong {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 15px;
+  color: $textGreen;
+  margin-left: 5px;
+}
+.separator {
+  width: 100%;
+  border: 2px solid $textGreen;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+.complitedBlock {
+  margin: 0 2px;
+}
+.complitedText {
+  font-size: 11px;
+  line-height: 15px;
+  color: $text;
+}
+.complitedTextStrong {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 15px;
+  color: $textGreen;
+  margin-left: 5px;
+}
