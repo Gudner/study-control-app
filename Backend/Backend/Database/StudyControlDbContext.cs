@@ -4,6 +4,8 @@ namespace Backend.Database;
 
 public class StudyControlDbContext : DbContext
 {
+    public DbSet<SubjectCard> SubjectCards { get; set; }
+
     public StudyControlDbContext(DbContextOptions options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

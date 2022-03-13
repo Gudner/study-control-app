@@ -1,9 +1,8 @@
 ﻿using Backend.Extensions;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 
-namespace Backend.Configuration;
+namespace Backend.Singletons;
 
 public static class Application
 {

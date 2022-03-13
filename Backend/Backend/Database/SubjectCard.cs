@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Database;
 
+public class SubjectCardRequestBody
+{
+    public string SubjectName { get; set; }
+    public string TeacherName { get; set; }
+}
+
 [Table(nameof(SubjectCard))]
 public class SubjectCard
 {

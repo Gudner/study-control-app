@@ -1,55 +1,33 @@
-﻿using Backend.Configuration;
-using Backend.Database;
+﻿using Backend.Database;
 using Backend.Database.Migrations;
+using Backend.EndpointDefinitions;
 using Backend.Extensions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-using Serilog.Events;
-using System.Reflection;
+using Backend.Singletons;
+using Microsoft.EntityFrameworkCore;
 
-namespace Backend;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddCors(options => options.AddPolicy("allowAny", o =>
 {
-    public static async Task Main(string[] args)
-    {
-        Log.Logger = CreateLogger();
+    o.AllowAnyOrigin();
+    o.AllowAnyHeader();
+    o.AllowAnyMethod();
+}));
 
-        var host = Host.CreateDefaultBuilder(args)
-            .UseSerilog()
-            .UseConsoleLifetime()
-            .Build();
+builder.Services.AddEndpointDefinitions(typeof(SubjectCard));
 
-        Application.Configuration = host.Services.GetRequiredService<IConfiguration>();
+builder.Services.AddDbContext<StudyControlDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionStringForStudyControlDb()));
 
-        Application.PrimaryDbConnectionProvider = (configuration) => configuration.GetConnectionStringForStudyControlDb();
+var app = builder.Build();
 
-        try
-        {
-            Log.Information("Starting generic host");
+app.UseCors("allowAny");
 
-            DbUpdater.EnsureDatabaseSchemaUpToDate(new Assembly[] { typeof(SubjectCard).Assembly, typeof(Program).Assembly });
+app.UseEndpointDefinitions();
 
-            await host.RunAsync();
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host terminated unexpectedly");
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
+Application.Configuration = app.Services.GetRequiredService<IConfiguration>();
 
-    private static ILogger CreateLogger() => new LoggerConfiguration()
-                   .MinimumLevel.Debug()
-                   .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                   .Enrich.FromLogContext()
-                   .WriteTo.Console()
-                   .WriteTo.File(Path.Combine("logs", "log.txt"), rollingInterval: RollingInterval.Day)
-                   .CreateLogger();
-}
+DbUpdater.EnsureDatabaseSchemaUpToDate(app.Configuration.GetConnectionStringForStudyControlDb());
+
+app.Run();
 
