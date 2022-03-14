@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+.input {
+    width: 300px;
+    height: 40px;
+    padding-left: 15px;
+    border-radius: 20px;
+    margin-top: 15px;
+    background-color: $bgItem;
+    font-size: 13px;
+    border: none;
+    color: $text;
+    &:focus {
+        border: 2px solid $textGreen;
+    }
+}
+.error__message {
+    margin-top: 5px;
+    font-size: 12px;
+    color: red;
+}
+.right {
+    border: 2px solid #0fee83;
+}
+.invalid {
+    border: 2px solid red;
+}
