@@ -7,7 +7,7 @@ export default function Footer() {
     <div className={style.footer}>
       <div className={style.foterIner}>
         <div className={style.item}>
-          <a href="#" className={style.itemLink}>
+          <a href="http://localhost:3000/" className={style.itemLink}>
             <Image
               src="/subjectIcon.png"
               alt="subject-icon"

@@ -7,23 +7,22 @@ import stateFormAddSubject from "../../store/stateFormAddSubject";
 import { observer } from "mobx-react-lite";
 
 export default observer(function CardsContent(props) {
-    const addSubject = () => {};
-    let subjectItem = props.data;
-    console.log("stateFormAddSubject.flag", stateFormAddSubject.flag);
-    return (
-        <>
-            <div className={style.container}>
-                {subjectItem.map((item, key) => (
-                    <CardsItem key={key} data={item} />
-                ))}
-                <AddSubjectBatton addSubject={addSubject} />
+  const addSubject = () => {};
+  let subjectItem = props.data;
+  console.log("stateFormAddSubject.flag", stateFormAddSubject.flag);
+  return (
+    <>
+      <div className={style.container}>
+        {subjectItem.map((item, key) => (
+          <CardsItem key={key} data={item} />
+        ))}
+        <AddSubjectBatton
+          addSubject={addSubject}
+          click={() => stateFormAddSubject.setFlagForm()}
+        />
 
-                {stateFormAddSubject.flag == true ? (
-                    <AddSubjectModal />
-                ) : (
-                    <></>
-                )}
-            </div>
-        </>
-    );
+        {stateFormAddSubject.flag == true ? <AddSubjectModal /> : <></>}
+      </div>
+    </>
+  );
 });
