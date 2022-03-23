@@ -7,7 +7,7 @@ export default function CardsItem(props) {
   return (
     <a href="#">
       <div className={style.card}>
-        <h3 className={style.cardTitle}>{data.title}</h3>
+        <h3 className={style.cardTitle}>{data.subjectName}</h3>
         <div className={style.cardTeacherBlock}>
           <Image
             src="/teacherIcon.png"
@@ -15,7 +15,7 @@ export default function CardsItem(props) {
             width="22"
             height="22"
           />
-          <span className={style.teacherName}>{data.teacher}</span>
+          <span className={style.teacherName}>{data.teacherName}</span>
         </div>
         <div className={style.controlDateBlock}>
           <span className={style.controlDateText}>Дата контроля:</span>
