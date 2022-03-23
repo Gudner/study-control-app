@@ -1,0 +1,14 @@
+﻿version: "3.3"
+services:
+  backend:
+    build:
+      context: "."
+      dockerfile: ./Backend/Backend/Dockerfile
+    restart: always
+    ports: 
+      - 8002:80
+    volumes:
+      - type: bind
+        source: /var/studycontrolapp/appsettings.json
+        target: /app/appsettings.json
+      - "/var/studycontrolapp/logs:/app/logs"
