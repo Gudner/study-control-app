@@ -29,7 +29,7 @@ export default function Home() {
     ]);
     
     const getData = () => {
-        let url = "http://localhost:5000/api/subjectcards";
+        let url = "http://51.250.69.130:8002/api/subjectcards";
         fetch(url)
             .then((res) => {
                 if (res.ok) {
@@ -47,7 +47,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        //getData();
+        getData();
         return () => {};
     }, []);
 /* ===== получение данных и запись в state ====*/

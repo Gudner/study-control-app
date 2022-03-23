@@ -32,12 +32,13 @@ export default observer(function addSubjectModal() {
   });
   //регистрация формы
   const regisrForm = async (values) => {
-    const res = await fetch("http://localhost:5000/api/subjectcards", {
+    const res = await fetch("http://51.250.69.130:8002/api/subjectcards", {
+      headers: {"Content-Type":"application/json"},
       method: "PUT",
       body: JSON.stringify(values, null, 2),
     });
 
-    const respons = await res.json();
+    const respons = await res;
     if (respons.status == 1) {
       //router.push("./result");
     } else {
@@ -46,7 +47,7 @@ export default observer(function addSubjectModal() {
   };
   const submit = (values) => {
     stateFormAddSubject.removeFlagForm();
-    //regisrForm(values);
+    regisrForm(values);
     console.log(values);
     console.log(JSON.stringify(values, null, 2));
   };
