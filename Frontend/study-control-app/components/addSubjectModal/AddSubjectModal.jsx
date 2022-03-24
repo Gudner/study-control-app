@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import style from "./AddSubjectModal.module.scss";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { InputText } from "../inputText/inputText";
+import { InputText } from "../inputText/InputText.jsx";
 import { observer } from "mobx-react-lite";
 import stateFormAddSubject from "../../store/stateFormAddSubject";
 import { useRouter } from "next/router";

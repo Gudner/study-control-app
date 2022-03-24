@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import CardsContent from "../components/cardsContent/cardsContent";
+import CardsContent from "../components/cardsContent/CardsContent.jsx";
 import style from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
 
