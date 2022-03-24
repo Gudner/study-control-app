@@ -2,6 +2,9 @@
 
 Study Control App is a tool to help students organize tasks they have to do in scope of a control point. Each control has a number of tasks and a deadline.
 
+## Live App can be found here:
+[Live App](https://study.revenant-games.online/ "Live App")
+
 ## Tools used for development:
 ### Backend:
 IDE: Microsoft Visual Studio 2022\
