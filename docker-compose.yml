@@ -12,3 +12,10 @@ services:
         source: /var/studycontrolapp/appsettings.json
         target: /app/appsettings.json
       - "/var/studycontrolapp/logs:/app/logs"
+  frontend:
+    build:
+      context: "."
+      dockerfile: ./Frontend/study-control-app/Dockerfile
+    restart: always
+    ports: 
+      - 3000:80
