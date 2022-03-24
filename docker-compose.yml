@@ -14,8 +14,8 @@ services:
       - "/var/studycontrolapp/logs:/app/logs"
   frontend:
     build:
-      context: "."
-      dockerfile: ./Frontend/study-control-app/Dockerfile
+      context: "./Frontend/study-control-app"
+      dockerfile: ./Dockerfile
     restart: always
     ports: 
       - 3000:80
