@@ -29,7 +29,7 @@ export default function Home() {
     ]);
     
     const getData = () => {
-        let url = "http://51.250.65.249:8002/api/subjectcards";
+        let url = "https://backend.revenant-games.online/api/subjectcards";
         fetch(url)
             .then((res) => {
                 if (res.ok) {
