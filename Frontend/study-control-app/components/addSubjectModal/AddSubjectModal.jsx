@@ -32,7 +32,7 @@ export default observer(function addSubjectModal() {
   });
   //регистрация формы
   const regisrForm = async (values) => {
-    const res = await fetch("http://51.250.69.130:8002/api/subjectcards", {
+    const res = await fetch("http://51.250.65.249:8002/api/subjectcards", {
       headers: {"Content-Type":"application/json"},
       method: "PUT",
       body: JSON.stringify(values, null, 2),
