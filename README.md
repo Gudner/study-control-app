@@ -9,4 +9,4 @@ Programming language: C# 10\
 Framework: .NET 6\
 Database: Microsoft SQL Server 2019
 ### Frontend:
-HTML + CSS + React JS
+HTML + CSS + React JS + Next.js
