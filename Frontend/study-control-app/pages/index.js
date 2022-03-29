@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import CardsContent from "../components/cardsContent/cardsContent";
+import CardsContent from "../components/cardsContent/CardsContent.jsx";
 import style from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
 
@@ -29,7 +29,7 @@ export default function Home() {
     ]);
     
     const getData = () => {
-        let url = "http://localhost:5000/api/subjectcards";
+        let url = "https://backend.revenant-games.online/api/subjectcards";
         fetch(url)
             .then((res) => {
                 if (res.ok) {
@@ -47,7 +47,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        //getData();
+        getData();
         return () => {};
     }, []);
 /* ===== получение данных и запись в state ====*/

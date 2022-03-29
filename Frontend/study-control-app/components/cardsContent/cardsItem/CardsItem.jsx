@@ -13,9 +13,15 @@ export default function CardsItem(props, ) {
   };
 
   return (
+<<<<<<< HEAD
     //  <a href={href} onClick={handleClick}>
       <div className={style.card} onClick={handleClick}>
         <h3 className={style.cardTitle}>{data.title}</h3>
+=======
+    <a href="#">
+      <div className={style.card}>
+        <h3 className={style.cardTitle}>{data.subjectName}</h3>
+>>>>>>> e6b8140911d5d8f408de44fc664d1126551641ad
         <div className={style.cardTeacherBlock}>
           <Image
             src="/teacherIcon.png"
@@ -23,7 +29,7 @@ export default function CardsItem(props, ) {
             width="22"
             height="22"
           />
-          <span className={style.teacherName}>{data.teacher}</span>
+          <span className={style.teacherName}>{data.teacherName}</span>
         </div>
         <div className={style.controlDateBlock}>
           <span className={style.controlDateText}>Дата контроля:</span>

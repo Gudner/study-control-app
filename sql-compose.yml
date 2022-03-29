@@ -1,4 +1,4 @@
-﻿version: "3.9"
+﻿version: "3.3"
 services:
   sql-server-db:
     container_name: sql-server-db
@@ -9,7 +9,7 @@ services:
     volumes:
       - db_data:/var/opt/mssql
     environment:
-      SA_PASSWORD: "168gA#4e&IsU"
+      SA_PASSWORD: "KY}6ht*SxbyfUEeY"
       ACCEPT_EULA: "Y"
       MSSQL_PID: Developer
 volumes:
