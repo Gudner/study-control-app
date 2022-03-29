@@ -14,7 +14,7 @@ export default observer(function CardsContent(props) {
         <>
             <div className={style.container}>
                 {subjectItem.map((item, key) => (
-                    <CardsItem key={key} data={item} />
+                    <CardsItem key={key} data={item} href='/subjectPages' />
                 ))}
                 <AddSubjectBatton addSubject={addSubject} />
 

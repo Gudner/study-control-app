@@ -55,7 +55,7 @@ export default function Home() {
 
     return (
         <div className={style.wrapApp}>
-            <Header />
+            <Header title='Предметы'/>
             <CardsContent data={subject} />
             <Footer />
         </div>

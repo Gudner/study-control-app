@@ -1,12 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import style from "./CardsItem.module.scss";
+import { useRouter } from 'next/router';
 
-export default function CardsItem(props) {
+
+export default function CardsItem(props, ) {
   let data = props.data;
+  let router = useRouter();
+
+  const handleClick = (href)=>{
+    router.push('/subjectPages');
+  };
+
   return (
-    <a href="#">
-      <div className={style.card}>
+    //  <a href={href} onClick={handleClick}>
+      <div className={style.card} onClick={handleClick}>
         <h3 className={style.cardTitle}>{data.title}</h3>
         <div className={style.cardTeacherBlock}>
           <Image
@@ -31,6 +39,6 @@ export default function CardsItem(props) {
           </strong>
         </div>
       </div>
-    </a>
+  // </a>
   );
 }
