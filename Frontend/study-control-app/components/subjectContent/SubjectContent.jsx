@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import style from "./SubjectContent.module.scss";
 
@@ -46,15 +47,50 @@ export default function SubjectContent() {
             <h2 className={style.title}>Список контролей</h2>
 
             {controlItem.map((item, key) => {
-                console.log('item', item.deadline);
-                // <div key = {item.idControl} className = {style.controlWrap}>
-                //     <h3 className={style.controlTitle}>
-                //         ТК - 1. Срок проведения: до:{item.deadline}
-                //     </h3>
-                // </div>;
-                //<button className={style.controlButtonAdd}>+</button>
+                console.log("item", item.deadline);
+                let tascks = item.item;
+                return (
+                    <div key={item.idControl} className={style.controlWrap}>
+                        <h3 className={style.controlTitle}>
+                            ТК - 1. Срок проведения: до: {item.deadline}
+                        </h3>
+                        {tascks.map((tasck) => {
+                            return (
+                                <div className={style.tasckWrap}>
+                                    <input
+                                        type="checkbox"
+                                        className={style.tasckCheck}
+                                    />
+                                    <div className={style.tasckWrapText}>
+                                        <span className={style.tasckText}>
+                                            {tasck.tasckText}
+                                        </span>
+                                    </div>
+                                    <div className={style.tasckButtonWrap}>
+                                        <Image
+                                            src="/calendar.png"
+                                            alt="calendar-icon"
+                                            width="24"
+                                            height="24"
+                                        />
+                                        <Image
+                                            src="/del.png"
+                                            alt="del-icon"
+                                            width="24"
+                                            height="24"
+                                        />
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        <div className={style.controlButtonAddWrap}>
+                            <button className={style.controlButtonAdd}>
+                                +
+                            </button>
+                        </div>
+                    </div>
+                );
             })}
-            
         </div>
     );
 }

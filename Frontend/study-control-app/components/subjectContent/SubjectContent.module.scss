@@ -5,9 +5,86 @@
     display: flex;
     position: relative;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-content: flex-start;
     flex-direction: column;
     flex-grow: 1;
-    padding: 0 15px;
+}
+.title {
+    width: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 25px;
+    color: $textGreen;
+}
+.controlWrap {
+    width: 100%;
+    min-height: max-content;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 10px;
+    background-color: $bgItem;
+}
+.controlTitle {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 19px;
+    color: $textGreen;
+}
+.tasckCheck {
+    width: 18px;
+    height: 18px;
+}
+.tasckWrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #494765;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+.tasckWrapText {
+    width: 100%;
+    margin: 0 10px;
+}
+.tasckText {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: $text;
+}
+
+.tasckButtonWrap {
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+.controlButtonAddWrap{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.controlButtonAdd {
+    width: 28px;
+    height: 28px;
+    border: 2px solid $textGreen;
+    border-radius: 50%;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: inherit;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: $textGreen;
 }
