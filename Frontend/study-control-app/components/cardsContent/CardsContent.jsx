@@ -7,8 +7,9 @@ import stateFormAddSubject from "../../store/stateFormAddSubject";
 import { observer } from "mobx-react-lite";
 
 export default observer(function CardsContent(props) {
-    const addSubject = () => {};
     let subjectItem = props.data;
+    console.log('subjectItem: ', subjectItem);
+   
     console.log("stateFormAddSubject.flag", stateFormAddSubject.flag);
     return (
         <>
@@ -17,11 +18,15 @@ export default observer(function CardsContent(props) {
                     <CardsItem key={key} data={item} href="/subjectPages" />
                 ))}
                 <AddSubjectBatton
-                    addSubject={addSubject}
                     click={() => stateFormAddSubject.setFlagForm()}
+                    addSubjectText="Добавить предмет"
                 />
 
-                {stateFormAddSubject.flag == true ? <AddSubjectModal /> : <></>}
+                {stateFormAddSubject.flag == true ? (
+                    <AddSubjectModal addSubject={subjectItem} setSubject = {props.setSubject} />
+                ) : (
+                    <></>
+                )}
             </div>
         </>
     );

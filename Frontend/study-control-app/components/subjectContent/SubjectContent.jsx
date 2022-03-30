@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import AddSubjectBatton from "../addSubjectBatton/AddSubjectBatton";
 import style from "./SubjectContent.module.scss";
 
 export default function SubjectContent() {
@@ -39,6 +40,42 @@ export default function SubjectContent() {
                 },
             ],
         },
+        {
+            idControl: 2,
+            deadline: "23.10.2022",
+            item: [
+                {
+                    idTasck: "0",
+                    status: false,
+                    tasckText:
+                        "Подготовить реферат об инструментах моделирования в соответствии с вариантом",
+                },
+            ],
+        },
+        {
+            idControl: 3,
+            deadline: "23.10.2022",
+            item: [
+                {
+                    idTasck: "0",
+                    status: false,
+                    tasckText:
+                        "Подготовить реферат об инструментах моделирования в соответствии с вариантом",
+                },
+            ],
+        },
+        {
+            idControl: 4,
+            deadline: "23.10.2022",
+            item: [
+                {
+                    idTasck: "0",
+                    status: false,
+                    tasckText:
+                        "Подготовить реферат об инструментах моделирования в соответствии с вариантом",
+                },
+            ],
+        },
     ];
     const [controlItem, setControlItem] = useState(data);
     console.log("controlItem", controlItem);
@@ -55,8 +92,9 @@ export default function SubjectContent() {
                             ТК - 1. Срок проведения: до: {item.deadline}
                         </h3>
                         {tascks.map((tasck) => {
+                            let key = tasck.idTasck;
                             return (
-                                <div className={style.tasckWrap}>
+                                <div key={key} className={style.tasckWrap}>
                                     <input
                                         type="checkbox"
                                         className={style.tasckCheck}
@@ -91,6 +129,11 @@ export default function SubjectContent() {
                     </div>
                 );
             })}
+            <AddSubjectBatton
+                // addSubject={addSubject}
+                // click={() => stateFormAddSubject.setFlagForm()}
+                addSubjectText="Добавить контроль"
+            />
         </div>
     );
 }

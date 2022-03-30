@@ -18,13 +18,11 @@ export default function Home() {
         fetch(url)
             .then((res) => {
                 if (res.ok) {
-                    console.log("res", res);
                     return res.json();
                 }
                 throw new Error("Ошибка запроса!");
             })
             .then((subject) => {
-                console.log("subject", subject);
                 setSubject(subject);
             })
             .catch((error) => {
@@ -35,7 +33,7 @@ export default function Home() {
     return (
         <div className={style.wrapApp}>
             <Header title="Предметы" />
-            <CardsContent data={subject} />
+            <CardsContent data={subject} setSubject={setSubject}/>
             <Footer />
         </div>
     );

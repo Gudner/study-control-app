@@ -8,7 +8,7 @@ export default function AddSubjectBatton(props) {
         <div className={style.plusConteiner}>
           <span className={style.plus}>+</span>
         </div>
-        <span className={style.AddSubjectText}>Добавить контроль</span>
+        <span className={style.AddSubjectText}>{props.addSubjectText}</span>
       </div>
     </div>
   );
