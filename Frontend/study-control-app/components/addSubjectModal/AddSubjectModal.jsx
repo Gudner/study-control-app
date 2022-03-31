@@ -4,9 +4,9 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { InputText } from "../inputText/InputText.jsx";
 import { observer } from "mobx-react-lite";
-import stateFormAddSubject from "../../store/stateFormAddSubject";
+import stateFormAddSubject from "../../store/stateFormAdd";
 
-export default observer(function addSubjectModal(props) {
+export default observer(function AddSubjectModal(props) {
     const ref = useRef();
     console.log("props", props.addSubject);
 

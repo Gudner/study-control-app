@@ -1,6 +1,5 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-
 import style from "../styles/Home.module.scss";
 import SubjectContent from "../components/subjectContent/SubjectContent";
 

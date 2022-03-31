@@ -2,8 +2,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import AddSubjectBatton from "../addSubjectBatton/AddSubjectBatton";
 import style from "./SubjectContent.module.scss";
+import stateFormAdd from "../../store/stateFormAdd";
+import { observer } from "mobx-react-lite";
+import AddSubjectModal from "../addSubjectModal/AddSubjectModal";
+import AddControlModal from "../addControlModal/AddControlModal";
+import AddTasckModal from "../addTasckModal/addTasckModal";
 
-export default function SubjectContent() {
+export default observer(function SubjectContent() {
     let data = [
         {
             idControl: 0,
@@ -130,10 +135,10 @@ export default function SubjectContent() {
                 );
             })}
             <AddSubjectBatton
-                // addSubject={addSubject}
-                // click={() => stateFormAddSubject.setFlagForm()}
+                click={() => stateFormAdd.setFlagForm()}
                 addSubjectText="Добавить контроль"
             />
+            {stateFormAdd.flag == true ? <AddControlModal /> : <></>}
         </div>
     );
-}
+});

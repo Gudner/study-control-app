@@ -1,13 +1,12 @@
 import { makeAutoObservable } from "mobx";
 
-class StateFormAddSubject {
+class StateFormAdd {
   flag = false;
 
   constructor() {
     makeAutoObservable(this);
   }
   setFlagForm() {
-    console.log("смена флага");
     this.flag = !this.flag;
   }
   removeFlagForm(state) {
@@ -15,4 +14,4 @@ class StateFormAddSubject {
   }
 }
 
-export default new StateFormAddSubject();
+export default new StateFormAdd();
