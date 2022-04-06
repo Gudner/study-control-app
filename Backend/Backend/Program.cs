@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(options => options.AddPolicy("allowAny", o =>
 {
     o.AllowAnyOrigin();
@@ -20,6 +23,9 @@ builder.Services.AddDbContext<StudyControlDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionStringForStudyControlDb()));
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("allowAny");
 

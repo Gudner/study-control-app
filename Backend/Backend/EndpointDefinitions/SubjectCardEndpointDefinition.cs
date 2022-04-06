@@ -12,10 +12,10 @@ public class SubjectCardEndpointDefinition : IEndpointDefinition
     public void DefineEndpoints(WebApplication app)
     {
         this.app = app;
-        this.app.MapGet("/api/subjectcards", 
+        this.app.MapGet("api/subjectcards", 
             async (StudyControlDbContext dbContext) => Results.Json(await GetAllItems(dbContext), new JsonSerializerOptions(JsonSerializerDefaults.Web) { ReferenceHandler = ReferenceHandler.IgnoreCycles})).RequireCors("allowAny");
-        this.app.MapPut("/api/subjectcards", async (SubjectCardRequestBody body, StudyControlDbContext dbContext) => await AddNewItem(body, dbContext)).RequireCors("allowAny");
-        this.app.MapDelete("/api/subjectcards/{id}", async (int id, StudyControlDbContext dbContext) =>
+        this.app.MapPut("api/subjectcards", async (SubjectCardRequestBody body, StudyControlDbContext dbContext) => await AddNewItem(body, dbContext)).RequireCors("allowAny");
+        this.app.MapDelete("api/subjectcards/{id}", async (int id, StudyControlDbContext dbContext) =>
         {
             var subjectCard = await dbContext.SubjectCards.SingleOrDefaultAsync(x => x.SubjectCardId == id);
 
