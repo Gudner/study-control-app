@@ -3,12 +3,22 @@ import Image from "next/image";
 import style from "./CardsItem.module.scss";
 import { useRouter } from "next/router";
 
-export default function CardsItem(props) {
+import { observer } from "mobx-react-lite";
+import stateSubjectItem from "../../../store/stateSubjectItem";
+
+
+export default observer(function CardsItem(props) {
+    console.log('props',props);
+   
     let data = props.data;
     let router = useRouter();
 
     const handleClick = (href) => {
-        router.push("/subjectPages");
+        console.log('данные по предмету', data);
+        // нужен контекст
+        stateSubjectItem.setData(data);
+        console.log('stateSubjectItem: ', stateSubjectItem);
+        //router.push("/subjectPages");
     };
 
     return (
@@ -45,4 +55,4 @@ export default function CardsItem(props) {
             </div>
         </a>
     );
-}
+});
