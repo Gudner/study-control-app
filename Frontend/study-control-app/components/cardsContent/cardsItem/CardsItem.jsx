@@ -2,22 +2,42 @@ import React from "react";
 import Image from "next/image";
 import style from "./CardsItem.module.scss";
 import { useRouter } from "next/router";
-
 import { observer } from "mobx-react-lite";
 import stateSubjectItem from "../../../store/stateSubjectItem";
 
-
 export default observer(function CardsItem(props) {
-    console.log('props',props);
-   
+    console.log("props", props);
+
     let data = props.data;
+    let allData = props.allData;
     let router = useRouter();
 
+    //регистрация формы
+    const updatingDataServer = async (id,newAllData) => {
+        const res = await fetch(
+            `https://backend.revenant-games.online/api/subjectcards/${id}`,
+            {
+                method: "DELETE",
+            }
+        );
+        const respons = await res;
+        if (respons.ok) {
+            props.setSubject(newAllData);
+        }
+    };
+    const removeCard = () => {
+        let newAllData = allData.filter(
+            (dataItem) =>
+                Number(dataItem.subjectCardId) != Number(data.subjectCardId)
+        );
+        updatingDataServer(data.subjectCardId, newAllData);
+    };
+
     const handleClick = (href) => {
-        console.log('данные по предмету', data);
+        console.log("данные по предмету", data);
         // нужен контекст
         stateSubjectItem.setData(data);
-        console.log('stateSubjectItem: ', stateSubjectItem);
+        console.log("stateSubjectItem: ", stateSubjectItem);
         //router.push("/subjectPages");
     };
 
@@ -25,6 +45,12 @@ export default observer(function CardsItem(props) {
         <a onClick={handleClick}>
             {/* <a onClick={event=>(props.click(event.target)) }> */}
             <div className={style.card}>
+                <div
+                    className={style.cardButtonRemoveCard}
+                    onClick={removeCard}
+                >
+                    <span className={style.cardButtonRemoveCardText}>x</span>
+                </div>
                 <h3 className={style.cardTitle}>{data.subjectName}</h3>
                 <div className={style.cardTeacherBlock}>
                     <Image

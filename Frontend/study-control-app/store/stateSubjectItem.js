@@ -8,7 +8,7 @@ class StateSubjectItem {
   }
   setData(data){
     this.newData = data;
-    console.log('newData: ', this.newData);
+    //console.log('newData: ', this.newData);
   }
   
 }
