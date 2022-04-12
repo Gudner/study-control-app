@@ -7,7 +7,7 @@ import stateFormAdd from "../../store/stateFormAdd";
 import { observer } from "mobx-react-lite";
 import AddSubjectModal from "../addSubjectModal/AddSubjectModal";
 import AddControlModal from "../addControlModal/AddControlModal";
-import AddTasckModal from "../addTasckModal/addTasckModal";
+import AddTasckModal from "../addTasckModal/AddTasckModal";
 
 export default observer(function SubjectContent(props) {
     console.log("props", props.data);
