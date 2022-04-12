@@ -19,10 +19,23 @@ export default observer(function AddControlModal(props) {
             document.removeEventListener("click", onClick);
         };
     }, []);
-    // ====== валидация  для 1 шага=====
+
     const validateAddControl = Yup.object().shape({
         timing: Yup.string().required("Это поле является обязателным!"),
+        controlType: Yup.string().required("Это поле является обязателным!"),
     });
+    const addingNewControl = async (values) => {
+        console.log("values", values);
+        let obj = {};
+        // const res = await fetch(
+        //     "https://backend.revenant-games.online/api/subjectcards",
+        //     {
+        //         headers: { "Content-Type": "application/json" },
+        //         method: "PUT",
+        //         body: JSON.stringify(values, null, 2),
+        //     }
+        // );
+    };
     //регистрация формы
     // const registrForm = async (values) => {
     //     const res = await fetch(
@@ -66,10 +79,16 @@ export default observer(function AddControlModal(props) {
                         <div className={style.inputWrap}>
                             {/* тут должен быть select */}
                             <InputText
-                                id="timing"
+                                id="controlType"
+                                type="text"
+                                placeholder="Тип контроля:"
+                                name="controlType"
+                            />
+                            <InputText
+                                id="deadlineDate"
                                 type="date"
                                 placeholder="Сроки проведения до:"
-                                name="timing"
+                                name="deadlineDate"
                             />
                         </div>
                         <button type="submit" className={style.addSubjecButton}>

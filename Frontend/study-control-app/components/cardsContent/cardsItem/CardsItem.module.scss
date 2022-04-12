@@ -1,5 +1,5 @@
 @import "../../../styles/variables.scss";
-.card {
+.conteiner{
   width: 165px;
   height: 200px;
   background: #2f2e41;
@@ -8,6 +8,9 @@
   padding: 15px 7px 0;
   margin-top: 20px;
   position: relative;
+}
+.card {
+  
 }
 .cardButtonRemoveCard{
   position: absolute;

@@ -85,7 +85,7 @@ export default observer(function SubjectContent(props) {
             ],
         },
     ];
-
+    //let data = [];
     const [controlItem, setControlItem] = useState(data); //установка состояния
     //console.log("controlItem", controlItem);
     return (
@@ -146,7 +146,11 @@ export default observer(function SubjectContent(props) {
                 addSubjectText="Добавить контроль"
             />
             {stateFormAdd.flag == true ? <AddControlModal /> : <></>}
-            {stateFormAdd.flagTask == true ? <AddTasckModal></AddTasckModal> : <></>}
+            {stateFormAdd.flagTask == true ? (
+                <AddTasckModal></AddTasckModal>
+            ) : (
+                <></>
+            )}
         </div>
     );
 });

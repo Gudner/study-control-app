@@ -6,13 +6,12 @@ import { observer } from "mobx-react-lite";
 import stateSubjectItem from "../../../store/stateSubjectItem";
 
 export default observer(function CardsItem(props) {
-    
     let data = props.data;
     let allData = props.allData;
     let router = useRouter();
 
     //регистрация формы
-    const updatingDataServer = async (id,newAllData) => {
+    const updatingDataServer = async (id, newAllData) => {
         const res = await fetch(
             `https://backend.revenant-games.online/api/subjectcards/${id}`,
             {
@@ -38,15 +37,11 @@ export default observer(function CardsItem(props) {
     };
 
     return (
-        <a onClick={handleClick}>
-            {/* <a onClick={event=>(props.click(event.target)) }> */}
-            <div className={style.card}>
-                <div
-                    className={style.cardButtonRemoveCard}
-                    onClick={removeCard}
-                >
-                    <span className={style.cardButtonRemoveCardText}>x</span>
-                </div>
+        <div className={style.conteiner} >
+            <div className={style.cardButtonRemoveCard} onClick={removeCard}>
+                <span className={style.cardButtonRemoveCardText}>x</span>
+            </div>
+            <div className={style.card} onClick={handleClick}>
                 <h3 className={style.cardTitle}>{data.subjectName}</h3>
                 <div className={style.cardTeacherBlock}>
                     <Image
@@ -75,6 +70,6 @@ export default observer(function CardsItem(props) {
                     </strong>
                 </div>
             </div>
-        </a>
+        </div>
     );
 });
