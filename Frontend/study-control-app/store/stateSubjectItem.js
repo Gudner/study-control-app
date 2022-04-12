@@ -1,14 +1,13 @@
 import { makeAutoObservable } from "mobx";
 
 class StateSubjectItem {
-  newData = {};
+  newData;
 
   constructor() {
     makeAutoObservable(this);
   }
   setData(data){
     this.newData = data;
-    //console.log('newData: ', this.newData);
   }
   
 }

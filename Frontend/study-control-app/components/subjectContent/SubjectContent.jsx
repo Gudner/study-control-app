@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import AddSubjectBatton from "../addSubjectBatton/AddSubjectBatton";
 import style from "./SubjectContent.module.scss";
 import stateFormAdd from "../../store/stateFormAdd";
+
 import { observer } from "mobx-react-lite";
 import AddSubjectModal from "../addSubjectModal/AddSubjectModal";
 import AddControlModal from "../addControlModal/AddControlModal";
 import AddTasckModal from "../addTasckModal/addTasckModal";
 
-export default observer(function SubjectContent() {
+export default observer(function SubjectContent(props) {
+    console.log("props", props);
+
     let data = [
         {
             idControl: 0,
@@ -82,8 +85,9 @@ export default observer(function SubjectContent() {
             ],
         },
     ];
-    const [controlItem, setControlItem] = useState(data);
-    console.log("controlItem", controlItem);
+
+    const [controlItem, setControlItem] = useState(data); //установка состояния
+    //console.log("controlItem", controlItem);
     return (
         <div className={style.container}>
             <h2 className={style.title}>Список контролей</h2>
@@ -100,22 +104,22 @@ export default observer(function SubjectContent() {
                             let key = tasck.idTasck;
                             return (
                                 <div key={key} className={style.tasckWrap}>
-                                    <input
+                                    {/* <input
                                         type="checkbox"
                                         className={style.tasckCheck}
-                                    />
+                                    /> */}
                                     <div className={style.tasckWrapText}>
                                         <span className={style.tasckText}>
                                             {tasck.tasckText}
                                         </span>
                                     </div>
                                     <div className={style.tasckButtonWrap}>
-                                        <Image
+                                        {/* <Image
                                             src="/calendar.png"
                                             alt="calendar-icon"
                                             width="24"
                                             height="24"
-                                        />
+                                        /> */}
                                         <Image
                                             src="/del.png"
                                             alt="del-icon"
@@ -126,7 +130,10 @@ export default observer(function SubjectContent() {
                                 </div>
                             );
                         })}
-                        <div className={style.controlButtonAddWrap}>
+                        <div
+                            className={style.controlButtonAddWrap}
+                            onClick={() => stateFormAdd.setFlagFormTasck()}
+                        >
                             <button className={style.controlButtonAdd}>
                                 +
                             </button>
@@ -139,6 +146,7 @@ export default observer(function SubjectContent() {
                 addSubjectText="Добавить контроль"
             />
             {stateFormAdd.flag == true ? <AddControlModal /> : <></>}
+            {stateFormAdd.flagTask == true ? <AddTasckModal></AddTasckModal> : <></>}
         </div>
     );
 });

@@ -6,8 +6,7 @@ import { observer } from "mobx-react-lite";
 import stateSubjectItem from "../../../store/stateSubjectItem";
 
 export default observer(function CardsItem(props) {
-    console.log("props", props);
-
+    
     let data = props.data;
     let allData = props.allData;
     let router = useRouter();
@@ -34,11 +33,8 @@ export default observer(function CardsItem(props) {
     };
 
     const handleClick = (href) => {
-        console.log("данные по предмету", data);
-        // нужен контекст
         stateSubjectItem.setData(data);
-        console.log("stateSubjectItem: ", stateSubjectItem);
-        //router.push("/subjectPages");
+        router.push("/subjectPages");
     };
 
     return (
