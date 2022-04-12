@@ -8,7 +8,7 @@ import stateFormAddSubject from "../../store/stateFormAdd";
 
 export default observer(function AddControlModal(props) {
     const ref = useRef();
-    console.log("props", props.addSubject);
+    // console.log("props", props.addSubject);
 
     useEffect(() => {
         const onClick = (e) =>
@@ -21,12 +21,17 @@ export default observer(function AddControlModal(props) {
     }, []);
 
     const validateAddControl = Yup.object().shape({
-        timing: Yup.string().required("Это поле является обязателным!"),
+        deadlineDate: Yup.string().required("Это поле является обязателным!"),
         controlType: Yup.string().required("Это поле является обязателным!"),
     });
     const addingNewControl = async (values) => {
         console.log("values", values);
-        let obj = {};
+        let sendData = {
+            deadlineDate: values.deadlineDate,
+            controlType: values.controlType,
+            //subjectCardId: //id subjectCardId
+        };
+        console.log("sendData", sendData);
         // const res = await fetch(
         //     "https://backend.revenant-games.online/api/subjectcards",
         //     {
@@ -58,16 +63,16 @@ export default observer(function AddControlModal(props) {
     //         props.setSubject([...props.addSubject, obj]);
     //     }
     // };
-    // const submit = (values) => {
-    //     stateFormAddSubject.removeFlagForm();
-    //     registrForm(values);
-    //     console.log(JSON.stringify(values, null, 2));
-    // };
+    const submit = (values) => {
+        //stateFormAddSubject.removeFlagForm();
+        addingNewControl(values);
+        console.log(JSON.stringify(values, null, 2));
+    };
 
     return (
         <div className={style.container}>
             <Formik
-                initialValues={{ subjectName: "", teacherName: "" }}
+                initialValues={{ deadlineDate: "", controlType: "" }}
                 onSubmit={(values) => submit(values)}
                 validationSchema={validateAddControl}
             >

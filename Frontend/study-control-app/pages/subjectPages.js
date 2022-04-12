@@ -8,7 +8,7 @@ import { toJS } from 'mobx';
 export default function SubjectPages() {
     let dataFromState = toJS(stateSubjectItem.newData);//data с которой будем работать
     let nameSabject = dataFromState.subjectName;
-    let controls = dataFromState.controls
+    let controls = dataFromState.controls;
     console.log('dataFromState: ', dataFromState);
     return (
         <div className={style.wrapApp}>

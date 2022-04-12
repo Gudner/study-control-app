@@ -10,7 +10,7 @@ import AddControlModal from "../addControlModal/AddControlModal";
 import AddTasckModal from "../addTasckModal/addTasckModal";
 
 export default observer(function SubjectContent(props) {
-    console.log("props", props);
+    console.log("props", props.data);
 
     let data = [
         {
