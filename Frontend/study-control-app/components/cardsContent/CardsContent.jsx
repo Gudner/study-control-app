@@ -21,13 +21,18 @@ export default observer(function CardsContent(props) {
                     <CardsItem key={key} data={item} allData = {subjectItem}  setSubject = {props.setSubject} href="/subjectPages" />
                     // <CardsItem key={key} data={item}  click={clickCard}/>
                 ))}
-                <AddSubjectBatton
+                {/* <AddSubjectBatton
                     click={() => stateFormAdd.setFlagForm()}
                     addSubjectText="Добавить предмет"
-                />
+                /> */}
 
-                {stateFormAdd.flag == true ? (
+                {/* {stateFormAdd.flag == true ? (
                     <AddSubjectModal addSubject={subjectItem} setSubject = {props.setSubject} />
+                ) : (
+                    <></>
+                )} */}
+                {stateFormAdd.flag == true ? (
+                    <AddTasckModal addTasck={tasckItem} setTasck = {props.setTasck} />
                 ) : (
                     <></>
                 )}

@@ -8,7 +8,7 @@ import stateFormAddSubject from "../../store/stateFormAdd";
 
 export default observer(function AddSubjectModal(props) {
     const ref = useRef();
-    console.log("props", props.addSubject);
+    // console.log("props", props.addSubject);
 
     useEffect(() => {
         const onClick = (e) =>

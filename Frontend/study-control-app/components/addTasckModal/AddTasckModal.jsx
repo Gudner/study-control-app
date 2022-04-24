@@ -4,6 +4,7 @@ import { Form, Formik } from "formik";
 import { InputText } from "../inputText/InputText.jsx";
 import { observer } from "mobx-react-lite";
 import stateFormAdd from "../../store/stateFormAdd.js";
+import stateFormAddSubject from "../../store/stateFormAdd";
 import style from "./AddTasckModal.module.scss";
 
 export default observer(function AddTasckModal(props) {
@@ -27,37 +28,42 @@ export default observer(function AddTasckModal(props) {
             .required("Это поле является обязателным!"),
     });
     //регистрация формы
-    // const registrForm = async (values) => {
-    //     const res = await fetch(
-    //         "https://backend.revenant-games.online/api/subjectcards",
-    //         {
-    //             headers: { "Content-Type": "application/json" },
-    //             method: "PUT",
-    //             body: JSON.stringify(values, null, 2),
-    //         }
-    //     );
+    const registrForm = async (values) => {
+        
+        const res = await fetch(
+            "https://backend.revenant-games.online/api/controltasks",
+            {
+                headers: { "Content-Type": "application/json" },
+                method: "PUT",
+                body: JSON.stringify(values, null, 2),
+            }
+        );
 
-    //     const respons = await res;
-    //     if (respons.ok) {
-    //         let obj = {
-    //             subjectCardId: props.addSubject.length + 1,
-    //             subjectName: values.subjectName,
-    //             teacherName: values.teacherName,
-    //             controls: null,
-    //         };
-    //         props.setSubject([...props.addSubject, obj]);
-    //     }
-    // };
-    // const submit = (values) => {
-    //     stateFormAddSubject.removeFlagForm();
-    //     registrForm(values);
-    //     console.log(JSON.stringify(values, null, 2));
-    // };
+        const respons = await res;
+        if (respons.ok) {
+            let obj = {
+               
+                controlId: props.addTasck.length+1,
+                tasckText: values.tasckText
+                // subjectCardId: props.addSubject.length + 1,
+                // subjectName: values.subjectName,
+                // teacherName: values.teacherName,
+                // controls: null,
+            };
+            props.setTasck([...props.addTasck, obj]);
+        }
+    };
+    const submit = (values) => {
+        
+        stateFormAddSubject.removeFlagForm();
+        registrForm(values);
+        console.log(JSON.stringify(values, null, 2));
+    };
 
     return (
         <div className={style.container}>
             <Formik
-                initialValues={{ subjectName: "", teacherName: "" }}
+                initialValues={{ controlId: 0, tasckText: "" }}
                 onSubmit={(values) => submit(values)}
                 validationSchema={validateAddTasck}
             >
@@ -70,7 +76,7 @@ export default observer(function AddTasckModal(props) {
                             <InputText
                                 id="tasckText"
                                 type="text"
-                                placeholder="Название предмета"
+                                placeholder="Текст задания"
                                 name="tasckText"
                             />
                         </div>
