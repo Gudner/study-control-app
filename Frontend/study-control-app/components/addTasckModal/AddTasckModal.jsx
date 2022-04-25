@@ -9,6 +9,8 @@ import style from "./AddTasckModal.module.scss";
 
 export default observer(function AddTasckModal(props) {
   console.log("props123322", props.controlItem);
+  console.log("stateFormAdd", stateFormAdd.setIdControl());
+
   const ref = useRef();
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export default observer(function AddTasckModal(props) {
       //     deadlineDate: "2022-04-24T17:35:48.697",
       //     subjectCardId: 19,
       //   };
-      console.log("test1", test1);
+      //console.log("test1", test1);
       props.setControlItem([...props.controlItem, values]);
       console.log("setControlItem: ", setControlItem);
     }

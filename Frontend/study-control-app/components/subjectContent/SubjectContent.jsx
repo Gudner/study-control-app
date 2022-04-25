@@ -16,33 +16,34 @@ export default observer(function SubjectContent(props) {
   const [controlItem, setControlItem] = useState(props.data); //установка состояния
 
   //функция удаления элемента и обнавления стейта
-//регистрация формы
-const updatingDataServer = async (id, newAllData) => {
-  const res = await fetch(
+  //регистрация формы
+  const updatingDataServer = async (id, newAllData) => {
+    const res = await fetch(
       `https://backend.revenant-games.online/api/controltasks/${id}`,
       {
-          method: "DELETE",
-      }
-  );
-  const respons = await res;
-  if (respons.ok) {
+        method: "DELETE",
+      },
+    );
+    const respons = await res;
+    if (respons.ok) {
       props.setSubject(newAllData);
-  }
-};
-const removeTask = () => {
-  let newAllData = data.filter(
+    }
+  };
+  const removeTask = () => {
+    let newAllData = data.filter(
       (controlTasks) =>
-          Number(controlTasks.controlTaskId) != Number(controlTasks.controlTaskId)
-  );
-  updatingDataServer(data.controlTaskId, newAllData);
-};
+        Number(controlTasks.controlTaskId) !=
+        Number(controlTasks.controlTaskId),
+    );
+    updatingDataServer(data.controlTaskId, newAllData);
+  };
 
   return (
     <div className={style.container}>
       <h2 className={style.title}>Список контролей</h2>
 
       {controlItem.map((item, key) => {
-        console.log("item", item.deadline);
+        console.log("item", item.controlId);
         //let tascks = item.item;
         let tasks = item.controlTasks;
         console.log("tasks1234: ", tasks);
@@ -85,9 +86,13 @@ const removeTask = () => {
                 </div>
               );
             })}
+
             <div
               className={style.controlButtonAddWrap}
-              onClick={() => stateFormAdd.setFlagFormTasck()}
+              onClick={() => {
+                stateFormAdd.setFlagFormTasck();
+                stateFormAdd.setIdControl();
+              }}
             >
               <button className={style.controlButtonAdd}>+</button>
             </div>
