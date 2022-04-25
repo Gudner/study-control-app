@@ -37,6 +37,21 @@ public class ControlTaskEndpointDefinition : IEndpointDefinition
 
             return Results.Ok();
         }).RequireCors("allowAny");
+
+        this.app.MapDelete("api/controltasks/{id}", async (int id, StudyControlDbContext dbContext) =>
+        {
+            var controlTask = await dbContext.ControlTasks.SingleOrDefaultAsync(x => x.ControlTaskId == id);
+
+            if (controlTask is null)
+            {
+                return Results.NotFound();
+            }
+
+            dbContext.ControlTasks.Remove(controlTask);
+            await dbContext.SaveChangesAsync();
+
+            return Results.Ok();
+        }).RequireCors("allowAny");
     }
 
     public void DefineServices(IServiceCollection services) {}
