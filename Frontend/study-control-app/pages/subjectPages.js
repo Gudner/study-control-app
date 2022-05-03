@@ -14,7 +14,7 @@ export default function SubjectPages() {
   return (
     <div className={style.wrapApp}>
       <Header title={nameSabject} />
-      <SubjectContent data={controls} />
+      <SubjectContent data={controls} dataFromState={dataFromState} />
       <Footer />
     </div>
   );

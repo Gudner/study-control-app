@@ -8,12 +8,9 @@ import { observer } from "mobx-react-lite";
 
 export default observer(function CardsContent(props) {
   let subjectItem = props.data;
-  console.log("subjectItem: ", subjectItem);
+  console.log("subjectItem", subjectItem);
   console.log("stateFormAddSubject.flag", stateFormAdd.flag);
 
-  // const clickCard = (event) =>{
-  //     console.log(event);
-  // };
   return (
     <>
       <div className={style.container}>

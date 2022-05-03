@@ -1,47 +1,46 @@
 @import "../../styles/variables";
 .container {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $bg;
-    opacity: 1;
-    
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg;
+  opacity: 1;
 }
 
 .form {
-    padding: 20px 22px 25px 22px;
-    width: 345px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #494765;
-    border-radius: 10px;
+  padding: 20px 22px 25px 22px;
+  width: 345px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #494765;
+  border-radius: 10px;
 }
 .formHeader {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 25px;
-    text-align: center;
-    color: $textGreen;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: $textGreen;
 }
 .inputWrap {
-    height: 175px;
+  height: 175px;
 }
 .addSubjecButton {
-    width: 150px;
-    height: 35px;
-    background: #494765;
-    border: 2px solid rgba(15, 238, 131, 0.8);
-    box-sizing: border-box;
-    border-radius: 10px;
-    color: $text;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18px;
+  width: 150px;
+  height: 35px;
+  background: #494765;
+  border: 2px solid rgba(15, 238, 131, 0.8);
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: $text;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
 }

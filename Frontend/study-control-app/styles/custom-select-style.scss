@@ -1,0 +1,15 @@
+.custom-select {
+  &__control {
+    margin-top: 25px !important;
+    background-color: #2f2e41 !important;
+    border: none !important;
+    border-radius: 10px !important;
+  }
+  &__single-value {
+    color: #ffffff !important;
+  }
+  &__menu {
+    background-color: #2f2e41 !important;
+    color: #ffffff !important;
+  }
+}
