@@ -9,7 +9,6 @@ export default observer(function CardsItem(props) {
     let data = props.data;
     let allData = props.allData;
     let router = useRouter();
-
     //регистрация формы
     const updatingDataServer = async (id, newAllData) => {
         const res = await fetch(
@@ -59,7 +58,7 @@ export default observer(function CardsItem(props) {
                         Дата контроля:
                     </span>
                     <strong className={style.controlDateTextStrong}>
-                        {data.controlDate}
+                        {new Date(data.controls[0].deadlineDate).toLocaleDateString()}
                     </strong>
                 </div>
                 <div className={style.separator}></div>

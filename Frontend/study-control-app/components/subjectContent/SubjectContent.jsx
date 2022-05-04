@@ -59,7 +59,7 @@ export default observer(function SubjectContent(props) {
 
       {controlItem.map((item, key) => {
         let tasks = item.controlTasks;
-        // console.log("tasks1234: ", tasks);
+         console.log("tasks1234: ", tasks);
         return (
           <div key={item.controlId} className={style.controlWrap}>
             <h3 className={style.controlTitle}>
@@ -67,7 +67,7 @@ export default observer(function SubjectContent(props) {
               {item.controlType == 2 ? "ТК - 2. " : ""}
               {item.controlType == 1 ? "ПК - 1. " : ""}
               {item.controlType == 3 ? "ПК - 2. " : ""}
-              Срок проведения: до: {item.deadline}
+              Срок проведения: до {new Date(item.deadlineDate).toLocaleDateString()}
             </h3>
             {tasks.map((task) => {
               let key = task.controlTaskId;
