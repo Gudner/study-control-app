@@ -52,10 +52,14 @@ public class SubjectCardEndpointDefinition : IEndpointDefinition
 
     private async Task<List<SubjectCard>> GetAllItems(StudyControlDbContext dbContext)
     {
-        return await dbContext.SubjectCards
+        var subjectCards = await dbContext.SubjectCards
             .Include(x => x.Controls)
             .ThenInclude(x => x.ControlTasks)
             .ToListAsync();
+
+        subjectCards.ForEach(x => x.Controls = x.Controls.OrderByDescending(y => y.DeadlineDate).ToList());
+
+        return subjectCards;
     }
 
     private async Task<IResult> AddNewItem(SubjectCardRequestBody body, StudyControlDbContext dbContext)
