@@ -41,7 +41,7 @@ public class SubjectCardEndpointDefinition : IEndpointDefinition
             .ToListAsync();
     }
 
-    private async Task AddNewItem(SubjectCardRequestBody body, StudyControlDbContext dbContext)
+    private async Task<IResult> AddNewItem(SubjectCardRequestBody body, StudyControlDbContext dbContext)
     {
         var subjectCard = new SubjectCard()
         {
@@ -51,5 +51,7 @@ public class SubjectCardEndpointDefinition : IEndpointDefinition
 
         await dbContext.AddAsync(subjectCard);
         await dbContext.SaveChangesAsync();
+
+        return Results.Json(subjectCard);
     }
 }
