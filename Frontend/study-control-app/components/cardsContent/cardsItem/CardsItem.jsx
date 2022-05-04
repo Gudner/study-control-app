@@ -9,6 +9,7 @@ export default observer(function CardsItem(props) {
     let data = props.data;
     let allData = props.allData;
     let router = useRouter();
+    console.log("prOOps", props.data);
     //регистрация формы
     const updatingDataServer = async (id, newAllData) => {
         const res = await fetch(
@@ -34,6 +35,16 @@ export default observer(function CardsItem(props) {
         stateSubjectItem.setData(data);
         router.push("/subjectPages");
     };
+    const showDate = () => {
+        let date = new Date(1).toLocaleDateString()
+        if(data.controls== null){
+            return date
+        }
+        if(data.controls.length != 0){
+            date = new Date(data.controls[0].deadlineDate).toLocaleDateString()
+        }
+        return date
+    };
 
     return (
         <div className={style.conteiner} >
@@ -58,7 +69,7 @@ export default observer(function CardsItem(props) {
                         Дата контроля:
                     </span>
                     <strong className={style.controlDateTextStrong}>
-                        {new Date(data.controls[0].deadlineDate).toLocaleDateString()}
+                        {showDate()}
                     </strong>
                 </div>
                 <div className={style.separator}></div>
