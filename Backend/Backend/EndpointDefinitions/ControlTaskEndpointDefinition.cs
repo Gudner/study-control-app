@@ -35,7 +35,7 @@ public class ControlTaskEndpointDefinition : IEndpointDefinition
             dbContext.ControlTasks.Add(controlTask);
             dbContext.SaveChanges();
 
-            return Results.Ok();
+            return Results.Json(controlTask);
         }).RequireCors("allowAny");
 
         this.app.MapDelete("api/controltasks/{id}", async (int id, StudyControlDbContext dbContext) =>
