@@ -8,8 +8,9 @@ import { observer } from "mobx-react-lite";
 
 export default observer(function CardsContent(props) {
   let subjectItem = props.data;
-  console.log("subjectItem", subjectItem);
-  console.log("stateFormAddSubject.flag", stateFormAdd.flag);
+  subjectItem.map((item) => {
+    console.log("subjectItem: ", item.subjectCardId);
+  });
 
   return (
     <>
@@ -22,7 +23,6 @@ export default observer(function CardsContent(props) {
             setSubject={props.setSubject}
             href="/subjectPages"
           />
-          // <CardsItem key={key} data={item}  click={clickCard}/>
         ))}
         <AddSubjectBatton
           click={() => stateFormAdd.setFlagForm()}

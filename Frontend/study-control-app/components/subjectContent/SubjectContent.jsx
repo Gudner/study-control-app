@@ -5,31 +5,46 @@ import style from "./SubjectContent.module.scss";
 import stateFormAdd from "../../store/stateFormAdd";
 
 import { observer } from "mobx-react-lite";
-import AddSubjectModal from "../addSubjectModal/AddSubjectModal";
 import AddControlModal from "../addControlModal/AddControlModal";
 import AddTasckModal from "../addTasckModal/AddTasckModal";
+import stateSubjectItem from "../../store/stateSubjectItem";
+import { toJS } from "mobx";
 
 export default observer(function SubjectContent(props) {
-  console.log("propsDataControl", props.data);
-  let subjectCardId = props.dataFromState.subjectCardId; //id карточки дисциплины
-  let subjectCardControls = props.dataFromState.controls; //id карточки дисциплины
-  console.log("subjectCardControls: ", subjectCardControls);
+  let id = toJS(stateSubjectItem.newCardId);
+  console.log("id: ", id);
 
-  const [controlItem, setControlItem] = useState([]); //установка состояния props.data
-  const [idControl, setIdControl] = useState(); //установка состояния
+  /* ===== получение данных и запись в state ====*/
+  const [subjectContent, setSubjectContent] = useState([]);
+  const [controlItem, setControlItem] = useState([]);
+  console.log("controlItem from Subject content", controlItem);
 
   useEffect(() => {
-    if (props.data != null) {
-      setControlItem(props.data);
-    }
-  });
+    getData();
+    return () => {};
+  }, []);
 
-  //функция удаления элемента и обнавления стейта
+  const getData = () => {
+    let url = `https://backend.revenant-games.online/api/subjectcards/${id}`;
+    fetch(url)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Ошибка запроса!");
+      })
+      .then((subjectContentRes) => {
+        setSubjectContent(subjectContentRes);
+        setControlItem(subjectContentRes.controls);
+        console.log("subjectContent", subjectContentRes);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
 
-  console.log("props", props);
-  console.log("propsDataControl", props.data);
+  // //функция удаления элемента и обнавления стейта
   let data = props.data;
-
   //функция удаления элемента и обнавления стейта
   //регистрация формы
   const updatingDataServer = async (id, newAllData) => {
@@ -56,10 +71,8 @@ export default observer(function SubjectContent(props) {
   return (
     <div className={style.container}>
       <h2 className={style.title}>Список контролей</h2>
-
       {controlItem.map((item, key) => {
         let tasks = item.controlTasks;
-         console.log("tasks1234: ", tasks);
         return (
           <div key={item.controlId} className={style.controlWrap}>
             <h3 className={style.controlTitle}>
@@ -67,7 +80,8 @@ export default observer(function SubjectContent(props) {
               {item.controlType == 2 ? "ТК - 2. " : ""}
               {item.controlType == 1 ? "ПК - 1. " : ""}
               {item.controlType == 3 ? "ПК - 2. " : ""}
-              Срок проведения: до {new Date(item.deadlineDate).toLocaleDateString()}
+              Срок проведения: до
+              {" " + new Date(item.deadlineDate).toLocaleDateString()}
             </h3>
             {tasks.map((task) => {
               let key = task.controlTaskId;
@@ -87,7 +101,6 @@ export default observer(function SubjectContent(props) {
                                             width="24"
                                             height="24"
                                         /> */}
-
                     <Image
                       //обработчик удаления
                       src="/del.png"
@@ -102,9 +115,7 @@ export default observer(function SubjectContent(props) {
             <div
               className={style.controlButtonAddWrap}
               onClick={(e) => {
-                setIdControl(e.target.id);
-                console.log("idControl", idControl);
-                stateFormAdd.setTaskItem(item);
+                console.log("e.target.id: ", e.target.id);
                 stateFormAdd.setFlagFormTasck();
               }}
             >
@@ -122,10 +133,9 @@ export default observer(function SubjectContent(props) {
       {stateFormAdd.flag == true ? (
         <AddControlModal
           //передача props
-          subjectCardId={subjectCardId}
-          subjectCardControls={subjectCardControls}
           controlItem={controlItem}
           setControlItem={setControlItem}
+          subjectCardId={id}
         />
       ) : (
         <></>

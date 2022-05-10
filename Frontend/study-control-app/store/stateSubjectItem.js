@@ -1,17 +1,16 @@
 import { makeAutoObservable } from "mobx";
 
 class StateSubjectItem {
-  newData;
-  subjectCardId;
-
+  newCardId;
+  newSubjectName;
   constructor() {
     makeAutoObservable(this);
   }
-  setData(data) {
-    this.newData = data;
+  setCardId(cardId) {
+    this.newCardId = cardId;
   }
-  setSubjectCardId(subjectCardId) {
-    this.subjectCardId = subjectCardId;
+  setSubjectName(subjectName) {
+    this.newSubjectName = subjectName;
   }
 }
 

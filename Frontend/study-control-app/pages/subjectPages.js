@@ -2,20 +2,17 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import style from "../styles/Home.module.scss";
 import SubjectContent from "../components/subjectContent/SubjectContent";
-import stateSubjectItem from "../store/stateSubjectItem";
+import { observer } from "mobx-react-lite";
 import { toJS } from "mobx";
+import stateSubjectItem from "../store/stateSubjectItem";
 
-export default function SubjectPages() {
-  let dataFromState = toJS(stateSubjectItem.newData); //data с которой будем работать
-  let nameSabject = dataFromState.subjectName;
-  let controls = dataFromState.controls;
-  console.log("controls: ", controls);
-  console.log("dataFromState: ", dataFromState);
+export default observer(function SubjectPages() {
+  let subjectName = toJS(stateSubjectItem.newSubjectName);
   return (
     <div className={style.wrapApp}>
-      <Header title={nameSabject} />
-      <SubjectContent data={controls} dataFromState={dataFromState} />
+      <Header title={subjectName} />
+      <SubjectContent />
       <Footer />
     </div>
   );
-}
+});

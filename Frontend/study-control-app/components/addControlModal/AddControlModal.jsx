@@ -6,20 +6,27 @@ import { InputText } from "../inputText/InputText.jsx";
 import { observer } from "mobx-react-lite";
 import stateFormAddSubject from "../../store/stateFormAdd";
 import Select from "react-select";
+import stateSubjectItem from "../../store/stateSubjectItem";
+import { toJS } from "mobx";
 
 export default observer(function AddControlModal(props) {
+  let controlItem = props.controlItem;
+  console.log("controlItem: ", controlItem);
+  let setControlItem = props.setControlItem;
+  console.log("setSontrolItem: ", setControlItem);
+  let subjectCardId = props.subjectCardId;
+  console.log("subjectCardId: ", subjectCardId);
+
   const ref = useRef();
   const [selectValue, setSelectValue] = useState("0");
-  let subjectCardId = props.subjectCardId; //id карточки дисциплины
-  let subjectCardControls = props.subjectCardControls;
-  console.log("subjectCardControls: ", subjectCardControls);
+
   const options = [
     { value: "TK1", label: "Тк-1" },
     { value: "PK1", label: "Пк-1" },
     { value: "TK2", label: "Тк-2" },
     { value: "PK2", label: "Пк-2" },
   ];
-
+  /*клик вне модального окна */
   useEffect(() => {
     console.log("ref: ", ref);
     const onClick = (e) => {
@@ -32,10 +39,13 @@ export default observer(function AddControlModal(props) {
       document.removeEventListener("click", onClick);
     };
   }, []);
+  /*клик вне модального окна */
 
+  /*валидационная схема */
   const validateAddControl = Yup.object().shape({
     deadlineDate: Yup.string().required("Это поле является обязателным!"),
   });
+  /*валидационная схема */
 
   const addingNewControl = async (values, selectValue) => {
     let sendData = {
@@ -55,21 +65,9 @@ export default observer(function AddControlModal(props) {
     const respons = await res;
     console.log("respons: ", respons);
     if (respons.ok) {
-      //меняем стейт из mobx
-      if (props.controlItem.length != 0) {
-        console.log(
-          "subjectCardControls[length - 1].controlId",
-          props.controlItem[props.controlItem.length - 1].controlId,
-        );
-
-        let controlId =
-          props.controlItem[props.controlItem.length - 1].controlId;
-        sendData.controlId = controlId + 1;
-        sendData.controlTasks = [];
-
-        props.setControlItem([...props.controlItem, sendData]);
-        console.log("subjectCardControls: ", props.controlItem);
-      }
+      //меняем стейт
+      console.log("controlItem", controlItem);
+      //setControlItem([...controlItem]);
     }
   };
 

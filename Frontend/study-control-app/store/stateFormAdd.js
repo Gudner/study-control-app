@@ -3,7 +3,6 @@ import { makeAutoObservable } from "mobx";
 class StateFormAdd {
   flag = false;
   flagTask = false;
-  newTaskData;
 
   constructor() {
     makeAutoObservable(this);
@@ -17,9 +16,6 @@ class StateFormAdd {
   removeFlagForm(state) {
     this.flag = false;
     this.flagTask = false;
-  }
-  setTaskItem(data) {
-    this.newTaskData = data;
   }
 }
 
