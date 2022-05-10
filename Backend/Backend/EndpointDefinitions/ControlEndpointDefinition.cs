@@ -39,7 +39,7 @@ public class ControlEndpointDefinition : IEndpointDefinition
             dbContext.Controls.Add(control);
             dbContext.SaveChanges();
 
-            return Results.Ok();
+            return Results.Json(control);
         }).RequireCors("allowAny");
     }
 
