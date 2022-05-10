@@ -17,6 +17,9 @@ export default observer(function SubjectContent(props) {
   /* ===== получение данных и запись в state ====*/
   const [subjectContent, setSubjectContent] = useState([]);
   const [controlItem, setControlItem] = useState([]);
+  const [controlTasks, setControlTasks] = useState();
+
+  const [idControl, setIdControl] = useState();
   console.log("controlItem from Subject content", controlItem);
 
   useEffect(() => {
@@ -115,7 +118,12 @@ export default observer(function SubjectContent(props) {
             <div
               className={style.controlButtonAddWrap}
               onClick={(e) => {
-                console.log("e.target.id: ", e.target.id);
+                setIdControl(e.target.id);
+                let data = controlItem.filter(
+                  (item) => item.controlId == idControl,
+                );
+                setControlTasks(data);
+                console.log("controlTasks", controlTasks);
                 stateFormAdd.setFlagFormTasck();
               }}
             >
@@ -132,10 +140,11 @@ export default observer(function SubjectContent(props) {
       />
       {stateFormAdd.flag == true ? (
         <AddControlModal
-          //передача props
           controlItem={controlItem}
           setControlItem={setControlItem}
           subjectCardId={id}
+          setControlTasks={setControlTasks}
+          controlTasks={controlTasks}
         />
       ) : (
         <></>

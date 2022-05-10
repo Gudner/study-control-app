@@ -11,14 +11,11 @@ import { toJS } from "mobx";
 
 export default observer(function AddControlModal(props) {
   let controlItem = props.controlItem;
-  console.log("controlItem: ", controlItem);
   let setControlItem = props.setControlItem;
-  console.log("setSontrolItem: ", setControlItem);
   let subjectCardId = props.subjectCardId;
-  console.log("subjectCardId: ", subjectCardId);
 
   const ref = useRef();
-  const [selectValue, setSelectValue] = useState("0");
+  const [selectValue, setSelectValue] = useState("TK1");
 
   const options = [
     { value: "TK1", label: "Тк-1" },
@@ -62,12 +59,13 @@ export default observer(function AddControlModal(props) {
         body: JSON.stringify(sendData, null, 2),
       },
     );
-    const respons = await res;
+
+    const respons = await res.json();
     console.log("respons: ", respons);
-    if (respons.ok) {
-      //меняем стейт
-      console.log("controlItem", controlItem);
-      //setControlItem([...controlItem]);
+    respons.controlTasks = [];
+
+    if (res.ok) {
+      setControlItem([...controlItem, respons]);
     }
   };
 
@@ -91,7 +89,9 @@ export default observer(function AddControlModal(props) {
                 options={options}
                 classNamePrefix="custom-select"
                 defaultValue={options[0]}
-                onChange={(event) => setSelectValue(event.value)}
+                onChange={(event) => {
+                  setSelectValue(event.value);
+                }}
               />
               <InputText
                 id="deadlineDate"
