@@ -59,33 +59,35 @@ export default observer(function SubjectContent(props) {
   let data = props.data;
   //функция удаления элемента и обнавления стейта
   //регистрация формы
-  const updatingDataServer = async (id, newAllData) => {
-    const res = await fetch(
-      `https://backend.revenant-games.online/api/controltasks/${id}`,
-      {
-        method: "DELETE",
-      },
-    );
-    const respons = await res;
-    // if (respons.ok) {
-    //   props.setSubject(newAllData);
-    // }
-  };
 
   const deleteTasck = (tasckId, controlId) => {
-    /*d случае удачного завершения */
-    let controls = controlItem[0].controlTasks;
-    let newcontrols = controls.filter((item) => item.controlTaskId != tasckId);
-    let indexMass;
+    const updatingDataServer = async () => {
+      const res = await fetch(
+        `https://backend.revenant-games.online/api/controltasks/${tasckId}`,
+        {
+          method: "DELETE",
+        },
+      );
 
-    controlItem.forEach((item, index) => {
-      if (item.controlId == controlId) {
-        indexMass = index;
+      if (res.ok) {
+        /*d случае удачного завершения */
+        let controls = controlItem[0].controlTasks;
+        let newcontrols = controls.filter(
+          (item) => item.controlTaskId != tasckId,
+        );
+        let indexMass;
+
+        controlItem.forEach((item, index) => {
+          if (item.controlId == controlId) {
+            indexMass = index;
+          }
+        });
+        controlItem[indexMass].controlTasks = newcontrols;
+        let newControlItem = [...controlItem];
+        setControlItem(newControlItem);
       }
-    });
-    controlItem[indexMass].controlTasks = newcontrols;
-    let newControlItem = [...controlItem];
-    setControlItem(newControlItem);
+    };
+    updatingDataServer();
   };
 
   return (
