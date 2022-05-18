@@ -56,7 +56,7 @@ export default observer(function SubjectContent(props) {
   };
 
   // //функция удаления элемента и обнавления стейта
-  let data = props.data;
+
   //функция удаления элемента и обнавления стейта
   //регистрация формы
 
@@ -71,19 +71,27 @@ export default observer(function SubjectContent(props) {
 
       if (res.ok) {
         /*d случае удачного завершения */
-        let controls = controlItem[0].controlTasks;
-        let newcontrols = controls.filter(
-          (item) => item.controlTaskId != tasckId,
-        );
-        let indexMass;
 
+        let indexMass;
+        console.log("controlItem", controlItem);
         controlItem.forEach((item, index) => {
           if (item.controlId == controlId) {
             indexMass = index;
           }
         });
+        let controls = controlItem[indexMass].controlTasks;
+        console.log("controlItem[0]: ", controlItem[0]);
+        let newcontrols = controls.filter(
+          (item) => item.controlTaskId != tasckId,
+        );
+        console.log("newcontrols: ", newcontrols);
+
+        console.log("indexMass: ", indexMass);
         controlItem[indexMass].controlTasks = newcontrols;
+        console.log("controlItem: ", controlItem);
+        //в data найти в control нужный control заменить его на новый и  создать новую data
         let newControlItem = [...controlItem];
+        console.log("newControlItem: ", newControlItem);
         setControlItem(newControlItem);
       }
     };
